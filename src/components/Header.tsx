@@ -13,10 +13,10 @@ const Header: React.FC = () => {
         </div>
         
         <nav className="hidden md:flex space-x-6">
-          <a href="#" className="text-gaming-800 hover:text-gaming-600 font-medium">Home</a>
-          <a href="#" className="text-gaming-800 hover:text-gaming-600 font-medium">Games</a>
-          <a href="#" className="text-gaming-800 hover:text-gaming-600 font-medium">About</a>
-          <a href="#" className="text-gaming-800 hover:text-gaming-600 font-medium">Contact</a>
+          
+          
+          
+          
         </nav>
         
         <div className="flex items-center space-x-4">
