@@ -31,10 +31,8 @@ const Index = () => {
           
           <main className="container mx-auto px-4 py-8 flex-1">
             <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-gaming-900 mb-3">Pascal Gaming Test Platform</h1>
-              <p className="text-gaming-600 max-w-2xl mx-auto">
-                Select your game preferences from the sidebar and enjoy a seamless gaming experience.
-              </p>
+              
+              
             </div>
             
             <div className="space-y-8 max-w-5xl mx-auto">
