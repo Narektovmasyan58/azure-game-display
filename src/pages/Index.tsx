@@ -1,16 +1,13 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { GameFilters } from '../components/FilterPanel';
 import GameDisplay from '../components/GameDisplay';
 import { toast } from "@/components/ui/use-toast";
-import { SidebarProvider, Sidebar, SidebarInset, SidebarRail } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarInset } from "@/components/ui/sidebar";
 import SidebarFilters from '@/components/SidebarFilters';
-
 const Index = () => {
   const [activeFilters, setActiveFilters] = useState<GameFilters | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const handleFilterChange = (filters: GameFilters) => {
     // Simulate loading
     setIsLoading(true);
@@ -23,13 +20,10 @@ const Index = () => {
       });
     }, 1500); // Simulate network delay
   };
-
-  return (
-    <SidebarProvider defaultOpen={true}>
+  return <SidebarProvider defaultOpen={true}>
       <div className="flex w-full min-h-screen bg-gradient-to-b from-blue-50 to-white">
         <Sidebar variant="inset" className="border-r border-gaming-100">
           <SidebarFilters onFilterChange={handleFilterChange} isLoading={isLoading} />
-          <SidebarRail />
         </Sidebar>
         
         <SidebarInset className="flex flex-col">
@@ -46,11 +40,13 @@ const Index = () => {
             <div className="space-y-8 max-w-5xl mx-auto">
               <GameDisplay filters={activeFilters} isLoading={isLoading} />
             </div>
+            
+            
           </main>
+          
+          
         </SidebarInset>
       </div>
-    </SidebarProvider>
-  );
+    </SidebarProvider>;
 };
-
 export default Index;
