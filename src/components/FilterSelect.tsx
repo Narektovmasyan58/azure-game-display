@@ -61,37 +61,41 @@ const FilterSelect: React.FC<FilterSelectProps> = ({
             <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-full p-0" align="start">
-          <Command>
-            <div className="flex items-center border-b px-3">
-              <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-              <CommandInput
-                placeholder={`Search ${label.toLowerCase()}...`}
-                className="h-9 flex-1"
-                value={search}
-                onValueChange={setSearch}
-              />
-            </div>
-            <CommandEmpty className="py-2 text-center text-sm">
-              No {label.toLowerCase()} found.
-            </CommandEmpty>
-            <CommandGroup className="max-h-52 overflow-auto">
-              {filteredOptions.map((option) => (
-                <CommandItem
-                  key={option}
-                  value={option}
-                  onSelect={(currentValue) => {
-                    onChange(currentValue);
-                    setOpen(false);
-                  }}
-                  className="cursor-pointer"
-                >
-                  {option}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </Command>
-        </PopoverContent>
+        {open && (
+          <PopoverContent className="w-full p-0" align="start">
+            <Command>
+              <div className="flex items-center border-b px-3">
+                <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                <CommandInput
+                  placeholder={`Search ${label.toLowerCase()}...`}
+                  className="h-9 flex-1"
+                  value={search}
+                  onValueChange={setSearch}
+                />
+              </div>
+              <CommandEmpty className="py-2 text-center text-sm">
+                No {label.toLowerCase()} found.
+              </CommandEmpty>
+              {filteredOptions.length > 0 && (
+                <CommandGroup className="max-h-52 overflow-auto">
+                  {filteredOptions.map((option) => (
+                    <CommandItem
+                      key={option}
+                      value={option}
+                      onSelect={(currentValue) => {
+                        onChange(currentValue);
+                        setOpen(false);
+                      }}
+                      className="cursor-pointer"
+                    >
+                      {option}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              )}
+            </Command>
+          </PopoverContent>
+        )}
       </Popover>
     </div>
   );
