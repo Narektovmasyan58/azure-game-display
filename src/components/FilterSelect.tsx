@@ -47,7 +47,7 @@ const FilterSelect: React.FC<FilterSelectProps> = ({
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent className="p-0">
-          {open && ( // Only render Command when dropdown is open
+          {open && filteredOptions && (
             <Command>
               <div className="flex items-center border-b px-3">
                 <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
