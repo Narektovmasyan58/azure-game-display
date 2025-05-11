@@ -18,14 +18,17 @@ const FilterSelect: React.FC<FilterSelectProps> = ({
   id, 
   label, 
   value, 
-  options, 
+  options = [], // Ensure we have a default empty array if options is undefined
   onChange, 
   placeholder 
 }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
 
-  const filteredOptions = options.filter((option) =>
+  // Ensure options is always an array before filtering
+  const safeOptions = Array.isArray(options) ? options : [];
+  
+  const filteredOptions = safeOptions.filter((option) =>
     option.toLowerCase().includes(search.toLowerCase())
   );
 
