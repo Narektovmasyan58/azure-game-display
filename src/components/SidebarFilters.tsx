@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
@@ -11,6 +10,7 @@ import {
   SidebarGroupLabel,
   SidebarGroupContent
 } from "@/components/ui/sidebar";
+import FilterSelect from './FilterSelect';
 import type { GameFilters } from '@/components/FilterPanel';
 
 interface SidebarFiltersProps {
@@ -50,89 +50,41 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ onFilterChange, isLoadi
         </SidebarGroupLabel>
         <SidebarGroupContent>
           <div className="space-y-5 p-4">
-            <div className="space-y-2">
-              <Label htmlFor="player-select" className="text-sm font-medium">
-                Player
-              </Label>
-              <Select 
-                onValueChange={(value) => handleFilterChange("player", value)} 
-                value={filters.player}
-              >
-                <SelectTrigger id="player-select" className="w-full">
-                  <SelectValue placeholder="Choose Player" />
-                </SelectTrigger>
-                <SelectContent>
-                  {players.map((player) => (
-                    <SelectItem key={player} value={player}>
-                      {player}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <FilterSelect
+              id="player-select"
+              label="Player"
+              value={filters.player}
+              options={players}
+              onChange={(value) => handleFilterChange("player", value)}
+              placeholder="Choose Player"
+            />
             
-            <div className="space-y-2">
-              <Label htmlFor="game-select" className="text-sm font-medium">
-                Game
-              </Label>
-              <Select 
-                onValueChange={(value) => handleFilterChange("game", value)} 
-                value={filters.game}
-              >
-                <SelectTrigger id="game-select" className="w-full">
-                  <SelectValue placeholder="Choose Game" />
-                </SelectTrigger>
-                <SelectContent>
-                  {games.map((game) => (
-                    <SelectItem key={game} value={game}>
-                      {game}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <FilterSelect
+              id="game-select"
+              label="Game"
+              value={filters.game}
+              options={games}
+              onChange={(value) => handleFilterChange("game", value)}
+              placeholder="Choose Game"
+            />
             
-            <div className="space-y-2">
-              <Label htmlFor="mode-select" className="text-sm font-medium">
-                Mode
-              </Label>
-              <Select 
-                onValueChange={(value) => handleFilterChange("mode", value)} 
-                value={filters.mode}
-              >
-                <SelectTrigger id="mode-select" className="w-full">
-                  <SelectValue placeholder="Choose Mode" />
-                </SelectTrigger>
-                <SelectContent>
-                  {modes.map((mode) => (
-                    <SelectItem key={mode} value={mode}>
-                      {mode}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <FilterSelect
+              id="mode-select"
+              label="Mode"
+              value={filters.mode}
+              options={modes}
+              onChange={(value) => handleFilterChange("mode", value)}
+              placeholder="Choose Mode"
+            />
             
-            <div className="space-y-2">
-              <Label htmlFor="currency-select" className="text-sm font-medium">
-                Currency
-              </Label>
-              <Select 
-                onValueChange={(value) => handleFilterChange("currency", value)} 
-                value={filters.currency}
-              >
-                <SelectTrigger id="currency-select" className="w-full">
-                  <SelectValue placeholder="Choose Currency" />
-                </SelectTrigger>
-                <SelectContent>
-                  {currencies.map((currency) => (
-                    <SelectItem key={currency} value={currency}>
-                      {currency}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <FilterSelect
+              id="currency-select"
+              label="Currency"
+              value={filters.currency}
+              options={currencies}
+              onChange={(value) => handleFilterChange("currency", value)}
+              placeholder="Choose Currency"
+            />
             
             <div className="flex items-center justify-between pt-2">
               <div className="flex items-center space-x-2">

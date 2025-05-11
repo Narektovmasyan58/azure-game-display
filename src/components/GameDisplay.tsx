@@ -8,23 +8,6 @@ interface GameDisplayProps {
 }
 
 const GameDisplay: React.FC<GameDisplayProps> = ({ filters, isLoading }) => {
-  // URL would be constructed based on filters in a real application
-  const getGameUrl = () => {
-    if (!filters || !filters.game) return '';
-    
-    // In a real app, you would construct the URL based on all filters
-    const baseUrl = 'https://demo.example.com/games/';
-    const gameName = filters.game.toLowerCase().replace(' ', '-');
-    const params = new URLSearchParams();
-    
-    if (filters.player) params.append('player', filters.player);
-    if (filters.mode) params.append('mode', filters.mode.toLowerCase());
-    if (filters.currency) params.append('currency', filters.currency);
-    if (filters.devMode) params.append('dev', 'true');
-    
-    return `${baseUrl}${gameName}?${params.toString()}`;
-  };
-
   const renderPlaceholder = () => {
     if (isLoading) {
       return (
@@ -58,7 +41,6 @@ const GameDisplay: React.FC<GameDisplayProps> = ({ filters, isLoading }) => {
     );
   }
 
-  // When we have valid filters and game selected
   return (
     <div className="game-container">
       <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gaming-100">
@@ -73,7 +55,6 @@ const GameDisplay: React.FC<GameDisplayProps> = ({ filters, isLoading }) => {
         </div>
         
         <div className="relative h-[500px] bg-gaming-50">
-          {/* In a real application, this would be an iframe with the actual game */}
           <div className="absolute inset-0 flex items-center justify-center flex-col">
             <div className="relative w-full h-full flex items-center justify-center bg-gaming-100/50">
               <div className="text-center px-4">
@@ -82,7 +63,6 @@ const GameDisplay: React.FC<GameDisplayProps> = ({ filters, isLoading }) => {
                   {filters.mode} mode | {filters.currency} | {filters.player}
                 </p>
                 
-                {/* Game UI simulation */}
                 <div className="mx-auto w-full max-w-md bg-white rounded-lg shadow-gaming p-6 border border-gaming-200">
                   <div className="h-40 bg-gaming-800 rounded-md mb-4 flex items-center justify-center">
                     <div className="animate-pulse-slow">
