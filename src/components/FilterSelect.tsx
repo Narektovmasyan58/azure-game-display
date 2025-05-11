@@ -47,34 +47,36 @@ const FilterSelect: React.FC<FilterSelectProps> = ({
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent className="p-0">
-          <Command>
-            <div className="flex items-center border-b px-3">
-              <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-              <CommandInput
-                placeholder={`Search ${label.toLowerCase()}...`}
-                className="h-9"
-                value={search}
-                onValueChange={setSearch}
-              />
-            </div>
-            <CommandEmpty className="py-2 text-center text-sm">No {label.toLowerCase()} found.</CommandEmpty>
-            <CommandGroup className="max-h-52 overflow-auto">
-              {filteredOptions.map((option) => (
-                <CommandItem
-                  key={option}
-                  value={option}
-                  onSelect={(currentValue) => {
-                    onChange(currentValue);
-                    setOpen(false);
-                    setSearch('');
-                  }}
-                  className="cursor-pointer"
-                >
-                  {option}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </Command>
+          {open && ( // Only render Command when dropdown is open
+            <Command>
+              <div className="flex items-center border-b px-3">
+                <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                <CommandInput
+                  placeholder={`Search ${label.toLowerCase()}...`}
+                  className="h-9"
+                  value={search}
+                  onValueChange={setSearch}
+                />
+              </div>
+              <CommandEmpty className="py-2 text-center text-sm">No {label.toLowerCase()} found.</CommandEmpty>
+              <CommandGroup className="max-h-52 overflow-auto">
+                {filteredOptions.map((option) => (
+                  <CommandItem
+                    key={option}
+                    value={option}
+                    onSelect={(currentValue) => {
+                      onChange(currentValue);
+                      setOpen(false);
+                      setSearch('');
+                    }}
+                    className="cursor-pointer"
+                  >
+                    {option}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </Command>
+          )}
         </SelectContent>
       </Select>
     </div>
