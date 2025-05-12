@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Gamepad } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-
 const Header: React.FC = () => {
-  return (
-    <header className="w-full bg-white border-b border-gaming-100 shadow-sm sticky top-0 z-50">
+  return <header className="w-full bg-white border-b border-gaming-100 shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="md:hidden">
@@ -20,14 +17,10 @@ const Header: React.FC = () => {
             Sign In
           </button>
           <button className="md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gaming-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+            
           </button>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;
