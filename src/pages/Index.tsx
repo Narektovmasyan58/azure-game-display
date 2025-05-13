@@ -41,8 +41,8 @@ const Index = () => {
   
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="flex w-full min-h-screen bg-gradient-to-b from-blue-50 to-white">
-        <Sidebar variant="inset" className="border-r border-gaming-100">
+      <div className="flex w-full min-h-screen bg-background">
+        <Sidebar variant="inset" className="border-r border-border">
           <SidebarFilters onFilterChange={handleFilterChange} isLoading={isLoading} />
         </Sidebar>
         

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -54,7 +53,7 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ onFilterChange, isLoadi
     <SidebarContent className="p-0">
       <SidebarGroup>
         <SidebarGroupLabel className="flex items-center gap-2 px-4 pt-2">
-          <Filter size={16} className="text-gaming-600" /> 
+          <Filter size={16} className="text-primary" /> 
           Filter Options
         </SidebarGroupLabel>
         <SidebarGroupContent>
@@ -143,7 +142,7 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ onFilterChange, isLoadi
             
             <Button 
               onClick={handleApplyFilters} 
-              className="w-full mt-4 bg-gaming-600 hover:bg-gaming-700 text-white"
+              className="w-full mt-4"
               disabled={isLoading}
             >
               {isLoading ? "Loading..." : "Apply Filters"}
