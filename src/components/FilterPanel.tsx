@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Filter } from "lucide-react";
+import { Filter, ExternalLink, Globe, Fullscreen } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -17,12 +17,15 @@ export interface GameFilters {
   mode: string;
   currency: string;
   devMode: boolean;
+  newTab: boolean;
+  language: string;
 }
 
 const players = ["Player 1", "Player 2", "Player 3", "Player 4"];
 const games = ["Blackjack", "Poker", "Roulette", "Slots", "Baccarat"];
 const modes = ["Standard", "Tournament", "Practice", "Multiplayer"];
 const currencies = ["USD", "EUR", "GBP", "BTC", "ETH"];
+const languages = ["English", "Spanish", "French", "German", "Italian", "Chinese", "Japanese"];
 
 const FilterPanel: React.FC<FilterPanelProps> = ({ onFilterChange, isLoading }) => {
   const [filters, setFilters] = React.useState<GameFilters>({
@@ -30,7 +33,9 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ onFilterChange, isLoading }) 
     game: "",
     mode: "",
     currency: "",
-    devMode: false
+    devMode: false,
+    newTab: false,
+    language: "English"
   });
 
   const handleFilterChange = (key: keyof GameFilters, value: string | boolean) => {
@@ -86,18 +91,40 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ onFilterChange, isLoading }) 
           onChange={(value) => handleFilterChange("currency", value)}
           placeholder="Choose Currency"
         />
+        
+        <FilterSelect
+          id="language-select"
+          label="Language"
+          value={filters.language}
+          options={languages}
+          onChange={(value) => handleFilterChange("language", value)}
+          placeholder="Choose Language"
+        />
       </div>
       
-      <div className="flex items-center justify-between mt-6">
-        <div className="flex items-center space-x-2">
-          <Switch 
-            id="dev-mode" 
-            checked={filters.devMode}
-            onCheckedChange={(checked) => handleFilterChange("devMode", checked)}
-          />
-          <Label htmlFor="dev-mode" className="text-sm font-medium text-gaming-800">
-            Dev Mode
-          </Label>
+      <div className="flex flex-col gap-4 mt-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Switch 
+              id="dev-mode" 
+              checked={filters.devMode}
+              onCheckedChange={(checked) => handleFilterChange("devMode", checked)}
+            />
+            <Label htmlFor="dev-mode" className="text-sm font-medium text-gaming-800">
+              Dev Mode
+            </Label>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <Switch 
+              id="new-tab" 
+              checked={filters.newTab}
+              onCheckedChange={(checked) => handleFilterChange("newTab", checked)}
+            />
+            <Label htmlFor="new-tab" className="text-sm font-medium text-gaming-800 flex items-center gap-1">
+              Open in New Tab <ExternalLink size={14} />
+            </Label>
+          </div>
         </div>
         
         <Button 

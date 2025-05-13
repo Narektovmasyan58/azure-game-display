@@ -3,7 +3,7 @@ import React from 'react';
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Filter } from "lucide-react";
+import { Filter, ExternalLink, Globe, Fullscreen } from "lucide-react";
 import { 
   SidebarContent, 
   SidebarGroup,
@@ -22,6 +22,7 @@ const players = ["Player 1", "Player 2", "Player 3", "Player 4"];
 const games = ["Blackjack", "Poker", "Roulette", "Slots", "Baccarat"];
 const modes = ["Standard", "Tournament", "Practice", "Multiplayer"];
 const currencies = ["USD", "EUR", "GBP", "BTC", "ETH"];
+const languages = ["English", "Spanish", "French", "German", "Italian", "Chinese", "Japanese"];
 
 const SidebarFilters: React.FC<SidebarFiltersProps> = ({ onFilterChange, isLoading }) => {
   const [filters, setFilters] = React.useState<GameFilters>({
@@ -29,7 +30,9 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ onFilterChange, isLoadi
     game: "",
     mode: "",
     currency: "",
-    devMode: false
+    devMode: false,
+    newTab: false,
+    language: "English"
   });
 
   const handleFilterChange = (key: keyof GameFilters, value: string | boolean) => {
@@ -39,6 +42,12 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ onFilterChange, isLoadi
 
   const handleApplyFilters = () => {
     onFilterChange(filters);
+  };
+
+  const handleFullscreen = () => {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    }
   };
 
   return (
@@ -86,17 +95,50 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ onFilterChange, isLoadi
               placeholder="Choose Currency"
             />
             
-            <div className="flex items-center justify-between pt-2">
-              <div className="flex items-center space-x-2">
-                <Switch 
-                  id="dev-mode" 
-                  checked={filters.devMode}
-                  onCheckedChange={(checked) => handleFilterChange("devMode", checked)}
-                />
-                <Label htmlFor="dev-mode" className="text-sm font-medium">
-                  Dev Mode
-                </Label>
+            <FilterSelect
+              id="language-select"
+              label="Language"
+              value={filters.language}
+              options={languages}
+              onChange={(value) => handleFilterChange("language", value)}
+              placeholder="Choose Language"
+            />
+            
+            <div className="flex flex-col gap-4 pt-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Switch 
+                    id="dev-mode-sidebar" 
+                    checked={filters.devMode}
+                    onCheckedChange={(checked) => handleFilterChange("devMode", checked)}
+                  />
+                  <Label htmlFor="dev-mode-sidebar" className="text-sm font-medium">
+                    Dev Mode
+                  </Label>
+                </div>
               </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Switch 
+                    id="new-tab-sidebar" 
+                    checked={filters.newTab}
+                    onCheckedChange={(checked) => handleFilterChange("newTab", checked)}
+                  />
+                  <Label htmlFor="new-tab-sidebar" className="text-sm font-medium flex items-center gap-1">
+                    Open in New Tab <ExternalLink size={14} />
+                  </Label>
+                </div>
+              </div>
+
+              <Button
+                onClick={handleFullscreen}
+                variant="outline"
+                className="flex items-center gap-1 w-full mt-2"
+              >
+                <Fullscreen size={16} />
+                Fullscreen Mode
+              </Button>
             </div>
             
             <Button 

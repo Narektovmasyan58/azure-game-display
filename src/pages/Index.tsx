@@ -17,9 +17,24 @@ const Index = () => {
     setTimeout(() => {
       setActiveFilters(filters);
       setIsLoading(false);
+      
+      // Handle opening in a new tab if that option is selected
+      if (filters.newTab) {
+        // Create a simple URL with query parameters
+        const queryParams = new URLSearchParams({
+          game: filters.game || '',
+          mode: filters.mode || '',
+          currency: filters.currency || '',
+          language: filters.language || 'English',
+          devMode: String(filters.devMode)
+        }).toString();
+        
+        window.open(`/game?${queryParams}`, '_blank');
+      }
+      
       toast({
         title: "Game Options Applied",
-        description: `Loading ${filters.game} in ${filters.mode} mode with ${filters.currency}`
+        description: `Loading ${filters.game} in ${filters.mode} mode with ${filters.currency} (${filters.language})`
       });
     }, 1500); // Simulate network delay
   };
