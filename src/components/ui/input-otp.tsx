@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { Dot } from "lucide-react"
 
@@ -17,6 +16,7 @@ const InputOTP = React.forwardRef<
     value?: string;
     onChange?: (value: string) => void;
     maxLength?: number;
+    containerClassName?: string; // Add the missing property
   }
 >(({ className, containerClassName, value = "", onChange, maxLength = 6, ...props }, ref) => {
   const [internalValue, setInternalValue] = React.useState(value)
